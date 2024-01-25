@@ -1,24 +1,10 @@
-import { Controller, Module, Get } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
-
-@Controller()
-//이 Controller 데코레이터는 우리가 애플리케이션 안에서 컨트롤러 역할을 할 클래스를 생성하려 한다고 Nest에게 알려주고 있습니다
-// 이 클래스는 유입되는 요청을 처리하고 라우팅 할 클래스.
-class AppController {
-  @Get()
-  getRootRoute() {
-    return "hi there!";
-  }
-}
-
-@Module({
-  controllers: [AppController],
-})
-class AppModule {}
+import { AppModule } from "./app.module";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  // 이부분이 Nest 애플리케이션의 인스턴스를 생성한 곳(app)
 
-  await app.listen(3000);
+  await app.listen(3000); // 이 app이 우리 컴퓨터의 특정한 포트로 유입되는 트래픽을 리스닝하기 시작.
 }
 bootstrap();
